@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif; 
+  font-weight: 600;
+}
+
+body{
+  background: url('assets/assets/bg.jpg') no-repeat center center/cover;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated gradient overlay */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(120deg, rgba(0,0,0,0.4), rgba(255,255,255,0.2));
+  backdrop-filter: blur(12px);
+  animation: gradientMove 10s ease infinite alternate;
+  z-index: 0;
+}
+@keyframes gradientMove {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+/* Main container with fade-in */
+.main-container{
+  height: 600px;
+  width:400px;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(0,0,0,0.25), rgba(255, 255,255,0.35));
+  border-radius: 25px;
+  backdrop-filter: blur(90px);
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  animation: fadeUp 1s ease-out;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* INPUT CONTAINER */
+.input-container{
+  position: relative;
+  margin-bottom: 22px;
+}
+.city-input{
+  width: 100%;
+  padding: 10px 106px;
+  border-radius: 100px;
+  border: 2px solid transparent;
+  background: rgba(0, 0, 0 ,0.25);
+  outline: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+.city-input:focus{
+  border: 2px solid rgba(255,255,255,0.6);
+  box-shadow: 0 0 10px rgba(255,255,255,0.6);
+}
+.city-input::placeholder{
+  color: rgba(255,255,255,0.75);
+}
+.search-btn{
+  position: absolute;
+  right: 16px;
+  top:50% ;
+  transform: translateY(-50%);
+  background: none;
+  display: flex;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s transform, 0.3s filter;
+}
+.search-btn:hover{
+  transform: translateY(-50%) scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
+}
+
+/* SECTION : WEATHER INFO */
+.weather-info{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  animation: fadeIn 1.2s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.location-date-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.location{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 5px;
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+.weather-summary-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.weather-summary-img{
+  width: 100px;
+  height: 100px;
+  animation: pulse 2.5s infinite ease-in-out;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+}
+.weather-summanry-info{
+  text-align: end;
+}
+.weather-condition-container{
+  display: flex;
+  justify-content: space-between;
+}
+.condition-item{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s transform;
+}
+.condition-item:hover{
+  transform: translateY(-6px) scale(1.05);
+}
+.condition-item span{
+  font-size: 50px;
+}
+
+/* Forecast */
+.forecast-items-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 15px 0;
+}
+.forecast-items-container::-webkit-scrollbar {
+  height: 6px;
+}
+.forecast-items-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 99px;
+}
+.forecast-items-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+.forecast-item {
+  min-width: 100px;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  align-items: center;
+  border-radius: 15px;
+  transition: 0.3s transform, 0.3s background;
+  animation: fadeUp 1s ease forwards;
+}
+.forecast-item:hover{
+  background: rgba(255, 255,255,0.35);
+  transform: translateY(-8px);
+}
+.forecast-item-img{
+  width: 70px;
+  height: 70px;
+  animation: float 5s infinite ease-in-out;
+}
+
+/* SECTION : MESSAGE */
+.section-message{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  margin-top: 25%;
+  animation: fadeIn 1.5s ease;
+}
+.section-message img{
+  height: 180px;
+  width: fit-content;
+  animation: float 6s infinite ease-in-out;
+}
